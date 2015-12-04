@@ -2,11 +2,13 @@ txt = open("input.txt")
 txtinput = txt.read()
 # print(txtinput)
 # print(txt.readlines())
-l=-1
-w=-1
-h=-1
+l = -1
+w = -1
+h = -1
 start = -1
-for i,c in enumerate(txtinput):
+total = 0
+line = 1
+for i, c in enumerate(txtinput):
     # print(c)
     if c != "\n" and c != "x":
         if start == -1:
@@ -29,8 +31,17 @@ for i,c in enumerate(txtinput):
         start = -1
         if h == -1:
             h = beforen
-        int sa = 2*l*w + 2*w*h + 2*l*h
-        print (str(l) + "x" + str(w) + "x" + str(h))
+        sa = 2*int(l)*int(w) + 2*int(w)*int(h) + 2*int(l)*int(h)
+        # extra = int(l)*int(w)
+        # if int(w)*int(h) < extra:
+        #     extra = int(w)*int(h)
+        # elif int(l)*(h) < extra:
+        #     extra = int(l)*int(h)
+        extra = min(int(l)*int(w),int(w)*int(h),int(l)*int(h))
+        total += int(sa) + int(extra)
+        print (str(l) + "x" + str(w) + "x" + str(h) + " sa: " + str(sa) + " extra: " + str(extra) + " total: " + str(total) + " line: " + str(line))
+        line += 1
         l = -1
         w = -1
         h = -1
+print(total)
